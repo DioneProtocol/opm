@@ -10,7 +10,7 @@ package workflow
 import (
 	reflect "reflect"
 
-	gomock "github.com/golang/mock/gomock"
+	gomock "go.uber.org/mock/gomock"
 )
 
 // MockInstaller is a mock of Installer interface.

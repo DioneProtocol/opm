@@ -11,9 +11,9 @@ import (
 	"github.com/DioneProtocol/odysseygo/utils/perms"
 	"github.com/DioneProtocol/odysseygo/version"
 	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/golang/mock/gomock"
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
+	"go.uber.org/mock/gomock"
 
 	"github.com/DioneProtocol/opm/checksum"
 	"github.com/DioneProtocol/opm/storage"

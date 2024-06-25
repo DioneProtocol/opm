@@ -10,9 +10,9 @@ import (
 	"github.com/DioneProtocol/odysseygo/database"
 	"github.com/DioneProtocol/odysseygo/version"
 	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/golang/mock/gomock"
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
+	"go.uber.org/mock/gomock"
 
 	"github.com/DioneProtocol/opm/storage"
 	"github.com/DioneProtocol/opm/types"

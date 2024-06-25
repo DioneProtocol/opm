@@ -10,7 +10,7 @@ package checksum
 import (
 	reflect "reflect"
 
-	gomock "github.com/golang/mock/gomock"
+	gomock "go.uber.org/mock/gomock"
 )
 
 // MockChecksummer is a mock of Checksummer interface.
