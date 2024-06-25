@@ -7,13 +7,13 @@ set -e
 usage() {
   this=$1
   cat <<EOF
-$this: download go binaries for ava-labs/apm
+$this: download go binaries for DioneProtocol/opm
 
 Usage: $this [-b] bindir [-d] [tag]
   -b sets bindir or installation directory, Defaults to ./bin
   -d turns on debug logging
    [tag] is a tag from
-   https://github.com/ava-labs/apm/releases
+   https://github.com/DioneProtocol/opm/releases
    If tag is missing, then the latest will be used.
 
 EOF
@@ -60,10 +60,10 @@ execute() {
 }
 get_binaries() {
   case "$PLATFORM" in
-    darwin/amd64) BINARIES="apm" ;;
-    darwin/arm64) BINARIES="apm" ;;
-    linux/amd64) BINARIES="apm" ;;
-    linux/arm64) BINARIES="apm" ;;
+    darwin/amd64) BINARIES="opm" ;;
+    darwin/arm64) BINARIES="opm" ;;
+    linux/amd64) BINARIES="opm" ;;
+    linux/arm64) BINARIES="opm" ;;
     *)
       log_crit "platform $PLATFORM is not supported.  Make sure this script is up-to-date and file request at https://github.com/${PREFIX}/issues/new"
       exit 1
@@ -332,10 +332,10 @@ End of functions from https://github.com/client9/shlib
 ------------------------------------------------------------------------
 EOF
 
-PROJECT_NAME=apm
-OWNER=ava-labs
-REPO="apm"
-BINARY=apm
+PROJECT_NAME=opm
+OWNER=DioneProtocol
+REPO="opm"
+BINARY=opm
 FORMAT=tar.gz
 OS=$(uname_os)
 ARCH=$(uname_arch)
