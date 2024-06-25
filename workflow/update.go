@@ -7,13 +7,13 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ava-labs/avalanchego/database"
+	"github.com/DioneProtocol/odysseygo/database"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
 	"github.com/spf13/afero"
 
-	"github.com/ava-labs/apm/git"
-	"github.com/ava-labs/apm/storage"
-	"github.com/ava-labs/apm/util"
+	"github.com/DioneProtocol/opm/git"
+	"github.com/DioneProtocol/opm/storage"
+	"github.com/DioneProtocol/opm/util"
 )
 
 var _ Workflow = &Update{}

@@ -4,9 +4,9 @@
 package constant
 
 const (
-	AppName                = "apm"
-	CoreAlias              = "ava-labs/avalanche-plugins-core"
-	CoreURL                = "https://github.com/ava-labs/avalanche-plugins-core.git"
+	AppName                = "opm"
+	CoreAlias              = "DioneProtocol/odyssey-plugins-core"
+	CoreURL                = "https://github.com/DioneProtocol/odyssey-plugins-core.git"
 	CoreBranch             = "master"
 	QualifiedNameDelimiter = ":"
 	AliasDelimiter         = "/"

@@ -7,12 +7,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/ava-labs/avalanchego/database"
+	"github.com/DioneProtocol/odysseygo/database"
 	"github.com/spf13/afero"
 
-	"github.com/ava-labs/apm/storage"
-	"github.com/ava-labs/apm/types"
-	"github.com/ava-labs/apm/util"
+	"github.com/DioneProtocol/opm/storage"
+	"github.com/DioneProtocol/opm/types"
+	"github.com/DioneProtocol/opm/util"
 )
 
 var ErrAlreadyUpdated = errors.New("already up-to-date")

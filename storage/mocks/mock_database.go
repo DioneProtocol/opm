@@ -10,7 +10,7 @@ package mocks
 import (
 	reflect "reflect"
 
-	"github.com/ava-labs/avalanchego/database"
+	"github.com/DioneProtocol/odysseygo/database"
 	gomock "github.com/golang/mock/gomock"
 )
 

@@ -4,10 +4,10 @@
 package storage
 
 import (
-	"github.com/ava-labs/avalanchego/version"
+	"github.com/DioneProtocol/odysseygo/version"
 	"github.com/go-git/go-git/v5/plumbing"
 
-	"github.com/ava-labs/apm/types"
+	"github.com/DioneProtocol/opm/types"
 )
 
 // SourceInfo represents a repository, its source, and the last synced commit.

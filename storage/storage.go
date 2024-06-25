@@ -4,11 +4,11 @@
 package storage
 
 import (
-	"github.com/ava-labs/avalanchego/database"
-	"github.com/ava-labs/avalanchego/database/prefixdb"
+	"github.com/DioneProtocol/odysseygo/database"
+	"github.com/DioneProtocol/odysseygo/database/prefixdb"
 	"gopkg.in/yaml.v3"
 
-	"github.com/ava-labs/apm/types"
+	"github.com/DioneProtocol/opm/types"
 )
 
 var (

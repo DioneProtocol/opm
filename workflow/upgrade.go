@@ -8,7 +8,7 @@ import (
 
 	"github.com/spf13/afero"
 
-	"github.com/ava-labs/apm/storage"
+	"github.com/DioneProtocol/opm/storage"
 )
 
 type UpgradeConfig struct {

@@ -6,7 +6,7 @@ package util
 import (
 	"strings"
 
-	"github.com/ava-labs/apm/constant"
+	"github.com/DioneProtocol/opm/constant"
 )
 
 func ParseQualifiedName(name string) (source string, plugin string) {

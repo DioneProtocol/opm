@@ -11,7 +11,7 @@ import (
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ava-labs/apm/url"
+	"github.com/DioneProtocol/opm/url"
 )
 
 func TestTmpInstaller_Download(t *testing.T) {

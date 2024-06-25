@@ -15,9 +15,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/yaml.v3"
 
-	"github.com/ava-labs/apm/git"
-	"github.com/ava-labs/apm/storage"
-	mockdb "github.com/ava-labs/apm/storage/mocks"
+	"github.com/DioneProtocol/opm/git"
+	"github.com/DioneProtocol/opm/storage"
+	mockdb "github.com/DioneProtocol/opm/storage/mocks"
 )
 
 func TestUpdateExecute(t *testing.T) {

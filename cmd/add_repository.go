@@ -37,12 +37,12 @@ func addRepository(fs afero.Fs) *cobra.Command {
 	}
 
 	command.RunE = func(_ *cobra.Command, _ []string) error {
-		apm, err := initAPM(fs)
+		opm, err := initOPM(fs)
 		if err != nil {
 			return err
 		}
 
-		return apm.AddRepository(alias, url, branch)
+		return opm.AddRepository(alias, url, branch)
 	}
 
 	return command

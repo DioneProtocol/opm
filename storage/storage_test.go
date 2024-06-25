@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/yaml.v3"
 
-	"github.com/ava-labs/apm/storage/mocks"
+	"github.com/DioneProtocol/opm/storage/mocks"
 )
 
 func TestDatabase_Has(t *testing.T) {

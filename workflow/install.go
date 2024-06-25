@@ -10,12 +10,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ava-labs/avalanchego/utils/perms"
+	"github.com/DioneProtocol/odysseygo/utils/perms"
 	"github.com/spf13/afero"
 
-	"github.com/ava-labs/apm/checksum"
-	"github.com/ava-labs/apm/storage"
-	"github.com/ava-labs/apm/types"
+	"github.com/DioneProtocol/opm/checksum"
+	"github.com/DioneProtocol/opm/storage"
+	"github.com/DioneProtocol/opm/types"
 )
 
 var _ Workflow = &Install{}

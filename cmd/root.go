@@ -8,27 +8,27 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ava-labs/avalanchego/utils/wrappers"
+	"github.com/DioneProtocol/odysseygo/utils/wrappers"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
 
-	"github.com/ava-labs/apm/apm"
-	"github.com/ava-labs/apm/config"
-	"github.com/ava-labs/apm/constant"
+	"github.com/DioneProtocol/opm/config"
+	"github.com/DioneProtocol/opm/constant"
+	"github.com/DioneProtocol/opm/opm"
 )
 
 var (
 	goPath  = os.ExpandEnv("$GOPATH")
 	homeDir = os.ExpandEnv("$HOME")
-	apmDir  = filepath.Join(homeDir, fmt.Sprintf(".%s", constant.AppName))
+	opmDir  = filepath.Join(homeDir, fmt.Sprintf(".%s", constant.AppName))
 )
 
 const (
 	configFileKey       = "config-file"
-	apmPathKey          = "apm-path"
+	opmPathKey          = "opm-path"
 	pluginPathKey       = "plugin-path"
 	credentialsFileKey  = "credentials-file"
 	adminAPIEndpointKey = "admin-api-endpoint"
@@ -36,8 +36,8 @@ const (
 
 func New(fs afero.Fs) (*cobra.Command, error) {
 	rootCmd := &cobra.Command{
-		Use:   "apm",
-		Short: "apm is a plugin manager to help manage virtual machines and subnets",
+		Use:   "opm",
+		Short: "opm is a plugin manager to help manage virtual machines and subnets",
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 			// we need to initialize our config here before each command starts,
 			// since Cobra doesn't actually parse any of the flags until
@@ -46,16 +46,16 @@ func New(fs afero.Fs) (*cobra.Command, error) {
 		},
 	}
 
-	rootCmd.PersistentFlags().String(configFileKey, "", "path to configuration file for the apm")
-	rootCmd.PersistentFlags().String(apmPathKey, apmDir, "path to the directory apm creates its artifacts")
-	rootCmd.PersistentFlags().String(pluginPathKey, filepath.Join(goPath, "src", "github.com", "ava-labs", "avalanchego", "build", "plugins"), "path to avalanche plugin directory")
+	rootCmd.PersistentFlags().String(configFileKey, "", "path to configuration file for the opm")
+	rootCmd.PersistentFlags().String(opmPathKey, opmDir, "path to the directory opm creates its artifacts")
+	rootCmd.PersistentFlags().String(pluginPathKey, filepath.Join(goPath, "src", "github.com", "DioneProtocol", "odysseygo", "build", "plugins"), "path to odyssey plugin directory")
 	rootCmd.PersistentFlags().String(credentialsFileKey, "", "path to credentials file")
-	rootCmd.PersistentFlags().String(adminAPIEndpointKey, "127.0.0.1:9650/ext/admin", "endpoint for the avalanche admin api")
+	rootCmd.PersistentFlags().String(adminAPIEndpointKey, "127.0.0.1:9650/ext/admin", "endpoint for the odyssey admin api")
 
 	errs := wrappers.Errs{}
 	errs.Add(
 		viper.BindPFlag(configFileKey, rootCmd.PersistentFlags().Lookup(configFileKey)),
-		viper.BindPFlag(apmPathKey, rootCmd.PersistentFlags().Lookup(apmPathKey)),
+		viper.BindPFlag(opmPathKey, rootCmd.PersistentFlags().Lookup(opmPathKey)),
 		viper.BindPFlag(pluginPathKey, rootCmd.PersistentFlags().Lookup(pluginPathKey)),
 		viper.BindPFlag(credentialsFileKey, rootCmd.PersistentFlags().Lookup(credentialsFileKey)),
 		viper.BindPFlag(adminAPIEndpointKey, rootCmd.PersistentFlags().Lookup(adminAPIEndpointKey)),
@@ -113,14 +113,14 @@ func initCredentials() (http.BasicAuth, error) {
 	return result, nil
 }
 
-func initAPM(fs afero.Fs) (*apm.APM, error) {
+func initOPM(fs afero.Fs) (*opm.OPM, error) {
 	credentials, err := initCredentials()
 	if err != nil {
 		return nil, err
 	}
 
-	return apm.New(apm.Config{
-		Directory:        viper.GetString(apmPathKey),
+	return opm.New(opm.Config{
+		Directory:        viper.GetString(opmPathKey),
 		Auth:             credentials,
 		AdminAPIEndpoint: viper.GetString(adminAPIEndpointKey),
 		PluginDir:        viper.GetString(pluginPathKey),

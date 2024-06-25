@@ -6,7 +6,7 @@ package admin
 import (
 	"context"
 
-	adminapi "github.com/ava-labs/avalanchego/api/admin"
+	adminapi "github.com/DioneProtocol/odysseygo/api/admin"
 )
 
 var _ Client = &client{}

@@ -4,7 +4,7 @@
 package storage
 
 import (
-	"github.com/ava-labs/avalanchego/database"
+	"github.com/DioneProtocol/odysseygo/database"
 	"gopkg.in/yaml.v3"
 )
 

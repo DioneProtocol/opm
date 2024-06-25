@@ -4,7 +4,7 @@
 package storage
 
 import (
-	"github.com/ava-labs/apm/types"
+	"github.com/DioneProtocol/opm/types"
 )
 
 var repositoryPrefix = []byte("repository")

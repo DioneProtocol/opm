@@ -7,15 +7,15 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/ava-labs/avalanchego/database"
-	"github.com/ava-labs/avalanchego/version"
+	"github.com/DioneProtocol/odysseygo/database"
+	"github.com/DioneProtocol/odysseygo/version"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/golang/mock/gomock"
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ava-labs/apm/storage"
-	"github.com/ava-labs/apm/types"
+	"github.com/DioneProtocol/opm/storage"
+	"github.com/DioneProtocol/opm/types"
 )
 
 func TestUninstallExecute(t *testing.T) {

@@ -9,7 +9,7 @@ import (
 
 	"github.com/spf13/afero"
 
-	"github.com/ava-labs/apm/url"
+	"github.com/DioneProtocol/opm/url"
 )
 
 type Installer interface {

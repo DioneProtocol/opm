@@ -8,13 +8,13 @@ import (
 	"path/filepath"
 	"sort"
 
-	"github.com/ava-labs/avalanchego/database"
+	"github.com/DioneProtocol/odysseygo/database"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/spf13/afero"
 	"gopkg.in/yaml.v3"
 
-	"github.com/ava-labs/apm/storage"
-	"github.com/ava-labs/apm/types"
+	"github.com/DioneProtocol/opm/storage"
+	"github.com/DioneProtocol/opm/types"
 )
 
 var (

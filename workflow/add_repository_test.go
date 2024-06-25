@@ -11,7 +11,7 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ava-labs/apm/storage"
+	"github.com/DioneProtocol/opm/storage"
 )
 
 func TestAddRepositoryExecute(t *testing.T) {

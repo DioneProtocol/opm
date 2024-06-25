@@ -3,7 +3,7 @@
 
 package types
 
-import "github.com/ava-labs/avalanchego/version"
+import "github.com/DioneProtocol/odysseygo/version"
 
 var _ Definition = &VM{}
 

@@ -1,7 +1,7 @@
 // Copyright (C) 2019-2021, Ava Labs, Inc. All rights reserved.
 // See the file LICENSE for licensing terms.
 
-package apm
+package opm
 
 import (
 	"errors"
@@ -12,31 +12,31 @@ import (
 	"syscall"
 	"text/tabwriter"
 
-	"github.com/ava-labs/avalanchego/database"
-	"github.com/ava-labs/avalanchego/database/leveldb"
-	"github.com/ava-labs/avalanchego/utils/logging"
-	"github.com/ava-labs/avalanchego/utils/perms"
+	"github.com/DioneProtocol/odysseygo/database"
+	"github.com/DioneProtocol/odysseygo/database/leveldb"
+	"github.com/DioneProtocol/odysseygo/utils/logging"
+	"github.com/DioneProtocol/odysseygo/utils/perms"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/spf13/afero"
 
-	"github.com/ava-labs/apm/admin"
-	"github.com/ava-labs/apm/constant"
-	"github.com/ava-labs/apm/engine"
-	"github.com/ava-labs/apm/git"
-	"github.com/ava-labs/apm/storage"
-	"github.com/ava-labs/apm/types"
-	"github.com/ava-labs/apm/url"
-	"github.com/ava-labs/apm/util"
-	"github.com/ava-labs/apm/workflow"
+	"github.com/DioneProtocol/opm/admin"
+	"github.com/DioneProtocol/opm/constant"
+	"github.com/DioneProtocol/opm/engine"
+	"github.com/DioneProtocol/opm/git"
+	"github.com/DioneProtocol/opm/storage"
+	"github.com/DioneProtocol/opm/types"
+	"github.com/DioneProtocol/opm/url"
+	"github.com/DioneProtocol/opm/util"
+	"github.com/DioneProtocol/opm/workflow"
 )
 
 var (
 	dbDir            = "db"
 	repositoryDir    = "repositories"
 	tmpDir           = "tmp"
-	metricsNamespace = "apm_db"
+	metricsNamespace = "opm_db"
 )
 
 type Config struct {
@@ -47,7 +47,7 @@ type Config struct {
 	Fs               afero.Fs
 }
 
-type APM struct {
+type OPM struct {
 	db database.Database
 
 	sourcesList  storage.Storage[storage.SourceInfo]
@@ -69,14 +69,14 @@ type APM struct {
 	fs               afero.Fs
 }
 
-func New(config Config) (*APM, error) {
+func New(config Config) (*OPM, error) {
 	dbDir := filepath.Join(config.Directory, dbDir)
 	db, err := leveldb.New(dbDir, []byte{}, logging.NoLog{}, metricsNamespace, prometheus.NewRegistry())
 	if err != nil {
 		return nil, err
 	}
 
-	a := &APM{
+	a := &OPM{
 		repositoriesPath: filepath.Join(config.Directory, repositoryDir),
 		tmpPath:          filepath.Join(config.Directory, tmpDir),
 		pluginPath:       config.PluginDir,
@@ -142,11 +142,11 @@ func parseAndRun(alias string, registry storage.Storage[storage.RepoList], comma
 	return command(fullName)
 }
 
-func (a *APM) Install(alias string) error {
+func (a *OPM) Install(alias string) error {
 	return parseAndRun(alias, a.registry, a.install)
 }
 
-func (a *APM) install(name string) error {
+func (a *OPM) install(name string) error {
 	nameBytes := []byte(name)
 
 	ok, err := a.installedVMs.Has(nameBytes)
@@ -180,11 +180,11 @@ func (a *APM) install(name string) error {
 	return a.executor.Execute(workflow)
 }
 
-func (a *APM) Uninstall(alias string) error {
+func (a *OPM) Uninstall(alias string) error {
 	return parseAndRun(alias, a.registry, a.uninstall)
 }
 
-func (a *APM) uninstall(name string) error {
+func (a *OPM) uninstall(name string) error {
 	alias, plugin := util.ParseQualifiedName(name)
 
 	repository := a.repoFactory.GetRepository([]byte(alias))
@@ -204,11 +204,11 @@ func (a *APM) uninstall(name string) error {
 	return wf.Execute()
 }
 
-func (a *APM) JoinSubnet(alias string) error {
+func (a *OPM) JoinSubnet(alias string) error {
 	return parseAndRun(alias, a.registry, a.joinSubnet)
 }
 
-func (a *APM) joinSubnet(fullName string) error {
+func (a *OPM) joinSubnet(fullName string) error {
 	alias, plugin := util.ParseQualifiedName(fullName)
 	repoRegistry := a.repoFactory.GetRepository([]byte(alias))
 
@@ -250,7 +250,7 @@ func (a *APM) joinSubnet(fullName string) error {
 	return nil
 }
 
-func (a *APM) Info(alias string) error {
+func (a *OPM) Info(alias string) error {
 	if qualifiedName(alias) {
 		return a.install(alias)
 	}
@@ -263,11 +263,11 @@ func (a *APM) Info(alias string) error {
 	return a.info(fullName)
 }
 
-func (a *APM) info(fullName string) error {
+func (a *OPM) info(fullName string) error {
 	return nil
 }
 
-func (a *APM) Update() error {
+func (a *OPM) Update() error {
 	workflow := workflow.NewUpdate(workflow.UpdateConfig{
 		Executor:         a.executor,
 		Registry:         a.registry,
@@ -291,7 +291,7 @@ func (a *APM) Update() error {
 	return nil
 }
 
-func (a *APM) Upgrade(alias string) error {
+func (a *OPM) Upgrade(alias string) error {
 	// If we have an alias specified, upgrade the specified VM.
 	if alias != "" {
 		return parseAndRun(alias, a.registry, a.upgradeVM)
@@ -313,7 +313,7 @@ func (a *APM) Upgrade(alias string) error {
 	return a.executor.Execute(wf)
 }
 
-func (a *APM) upgradeVM(name string) error {
+func (a *OPM) upgradeVM(name string) error {
 	return a.executor.Execute(workflow.NewUpgradeVM(
 		workflow.UpgradeVMConfig{
 			Executor:     a.executor,
@@ -328,7 +328,7 @@ func (a *APM) upgradeVM(name string) error {
 	))
 }
 
-func (a *APM) AddRepository(alias string, url string, branch string) error {
+func (a *OPM) AddRepository(alias string, url string, branch string) error {
 	if !util.ValidAlias(alias) {
 		return fmt.Errorf("%s is not a valid alias (must be in the form of organization/repository)", alias)
 	}
@@ -345,7 +345,7 @@ func (a *APM) AddRepository(alias string, url string, branch string) error {
 	return a.executor.Execute(wf)
 }
 
-func (a *APM) RemoveRepository(alias string) error {
+func (a *OPM) RemoveRepository(alias string) error {
 	if alias == constant.CoreAlias {
 		fmt.Printf("Can't remove %s (required repository).\n", constant.CoreAlias)
 		return nil
@@ -377,7 +377,7 @@ func (a *APM) RemoveRepository(alias string) error {
 	return a.sourcesList.Delete(aliasBytes)
 }
 
-func (a *APM) ListRepositories() error {
+func (a *OPM) ListRepositories() error {
 	itr := a.sourcesList.Iterator()
 
 	w := tabwriter.NewWriter(os.Stdout, 1, 1, 1, ' ', 0)

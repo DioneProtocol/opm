@@ -3,7 +3,7 @@
 
 package engine
 
-import "github.com/ava-labs/apm/workflow"
+import "github.com/DioneProtocol/opm/workflow"
 
 var _ workflow.Executor = &WorkflowEngine{}
 

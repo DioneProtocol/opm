@@ -23,12 +23,12 @@ func joinSubnet(fs afero.Fs) *cobra.Command {
 	}
 
 	command.RunE = func(_ *cobra.Command, _ []string) error {
-		apm, err := initAPM(fs)
+		opm, err := initOPM(fs)
 		if err != nil {
 			return err
 		}
 
-		return apm.JoinSubnet(subnet)
+		return opm.JoinSubnet(subnet)
 	}
 
 	return command

@@ -9,11 +9,11 @@ import (
 	"io/fs"
 	"path/filepath"
 
-	"github.com/ava-labs/avalanchego/database"
+	"github.com/DioneProtocol/odysseygo/database"
 	"github.com/spf13/afero"
 
-	"github.com/ava-labs/apm/storage"
-	"github.com/ava-labs/apm/types"
+	"github.com/DioneProtocol/opm/storage"
+	"github.com/DioneProtocol/opm/types"
 )
 
 var _ Workflow = &Uninstall{}

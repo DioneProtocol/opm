@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/yaml.v3"
 
-	"github.com/ava-labs/apm/storage/mocks"
+	"github.com/DioneProtocol/opm/storage/mocks"
 )
 
 func TestIterator_Next(t *testing.T) {

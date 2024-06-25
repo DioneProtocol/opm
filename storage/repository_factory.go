@@ -4,8 +4,8 @@
 package storage
 
 import (
-	"github.com/ava-labs/avalanchego/database"
-	"github.com/ava-labs/avalanchego/database/prefixdb"
+	"github.com/DioneProtocol/odysseygo/database"
+	"github.com/DioneProtocol/odysseygo/database/prefixdb"
 )
 
 var _ RepositoryFactory = repositoryFactory{}
