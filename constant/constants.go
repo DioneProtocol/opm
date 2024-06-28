@@ -7,7 +7,7 @@ const (
 	AppName                = "opm"
 	CoreAlias              = "DioneProtocol/odyssey-plugins-core"
 	CoreURL                = "https://github.com/DioneProtocol/odyssey-plugins-core.git"
-	CoreBranch             = "master"
+	CoreBranch             = "develop"
 	QualifiedNameDelimiter = ":"
 	AliasDelimiter         = "/"
 )

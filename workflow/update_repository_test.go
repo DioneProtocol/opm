@@ -54,7 +54,7 @@ func TestUpdateRepositoryExecute(t *testing.T) {
   homepage: "https://tryspaces.xyz"
   description: "Virtual machine that processes the spaces subnet."
   maintainers:
-    - "patrickogrady@avalabs.org"
+    - "dev@dioneprotocol.com"
   installScript: "scripts/build.sh"
   binaryPath: "build/sqja3uK17MJxfC7AN8nGadBw9JK5BcrsNwNynsqP5Gih8M5Bm"
   url: "https://github.com/DioneProtocol/spacesvm/archive/refs/tags/v0.0.3.tar.gz"
@@ -72,7 +72,7 @@ func TestUpdateRepositoryExecute(t *testing.T) {
   description: |
     Spaces enables authenticated, hierarchical storage of arbitrary keys/values using any EIO-712 compatible wallet.
   maintainers:
-    - "patrickogrady@avalabs.org"
+    - "dev@dioneprotocol.com"
   installScript: "" # no install script needed
   vms:
     - "spacesvm"
